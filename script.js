@@ -9,17 +9,24 @@ function spin() {
     ];
     document.getElementById("slot").innerText = slot.join(" | ");
 
-    let win = 0;
+    let resultText = "";
+    let amount = 0;
+
     if (slot[0] === slot[1] && slot[1] === slot[2]) {
-        win = Math.floor(Math.random() * 100_000_000) + 10_000_000;
+        // Выиграл
+        amount = Math.floor(Math.random() * 100_000_000) + 10_000_000;
+        balance += amount;
+        resultText = `🎉 Выиграл ${amount.toLocaleString()}₽`;
     } else {
-        win = Math.floor(Math.random() * 5_000_000) + 1_000_000;
+        // Проиграл
+        amount = Math.floor(Math.random() * 5_000_000) + 1_000_000;
+        balance = Math.max(0, balance - amount); // чтобы не уйти в минус
+        resultText = `💀 Проиграл ${amount.toLocaleString()}₽`;
     }
 
-    balance += win;
-    document.getElementById("balance").innerText = balance.toLocaleString() + "$";
+    document.getElementById("balance").innerText = balance.toLocaleString() + "₽";
+    document.getElementById("result").innerText = resultText;
 }
-
 
 Telegram.WebApp.ready();
 Telegram.WebApp.expand();
