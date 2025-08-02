@@ -20,7 +20,7 @@ function spin() {
     } else {
         // Проиграл
         amount = Math.floor(Math.random() * 5_000_000) + 1_000_000;
-        balance = Math.max(0, balance - amount); // чтобы не уйти в минус
+        balance = Math.max(0, balance - amount); 
         resultText = `💀 Проиграл ${amount.toLocaleString()}₽`;
     }
 
@@ -30,3 +30,4 @@ function spin() {
 
 Telegram.WebApp.ready();
 Telegram.WebApp.expand();
+
